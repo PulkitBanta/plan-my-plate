@@ -13,7 +13,6 @@ export const getServerSideProps = async () => {
   }
 }
 
-
 export default function Home({ diseases }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   return (
     <div className="h-screen w-screen bg-gray-300 p-6">
@@ -22,7 +21,12 @@ export default function Home({ diseases }: InferGetServerSidePropsType<typeof ge
       {/* Cards container */}
       <div className="flex">
         {diseases && diseases.map(disease => (
-          <Card title={disease.name} description={disease.description} />
+          <Card
+            id={disease.id}
+            title={disease.name}
+            description={disease.description}
+            key={disease.id}
+          />
         ))}
       </div>
     </div>
