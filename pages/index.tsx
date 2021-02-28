@@ -2,8 +2,10 @@ import Card from "../components/Card";
 import InputRounded from "../components/InputRounded";
 import nutridigmServerInstance from "../config/api/nutridigmServerInstance";
 import { InferGetServerSidePropsType } from "next";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FiSearch } from "react-icons/fi";
+import { AiOutlineDoubleRight } from "react-icons/ai";
+import Link from "next/link";
 
 type DiseasesType = {
   problemID: number;
@@ -26,7 +28,9 @@ export default function Home({
   return (
     <div className='flex flex-col items-center'>
       {/* Header */}
-      <h3 className='text-7xl tracking-wide font-bold my-2 text-gray-700'>Plan My Plate</h3>
+      <h3 className='text-7xl tracking-wide font-bold my-2 text-gray-700'>
+        Plan My Plate
+      </h3>
       <InputRounded
         input={inputVal}
         setInput={setInputVal}
@@ -34,6 +38,12 @@ export default function Home({
         icon={<FiSearch />}
         type='search'
       />
+      <Link href='/calories'>
+        <button className='flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-12 rounded-full duration-300 my-6'>
+          Goto calorie calculator&nbsp;
+          <AiOutlineDoubleRight />
+        </button>
+      </Link>
       {/* Cards container */}
       <div className='flex flex-wrap items-center justify-center'>
         {diseasesData &&
