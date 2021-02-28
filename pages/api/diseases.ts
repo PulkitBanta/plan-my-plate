@@ -6,7 +6,7 @@ interface APIResponse {
   status: number;
 }
 
-interface DiseasesAPIResponse extends APIResponse {
+export interface DiseasesAPIResponse extends APIResponse {
   data: {
     name: string;
     description: string;
