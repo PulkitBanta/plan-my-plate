@@ -17,7 +17,7 @@ export default function ListCard({ title, icon, iconClasses }: ListCardProps) {
                     {icon}
                 </div>
             </div>
-            <div className="flex flex-col w-full md:w-2/3">
+            <div className="flex flex-col w-full">
                 <p className="uppercase font-semibold text-center md:text-left md:font-bold text-gray-600">
                     {title}
                 </p>
