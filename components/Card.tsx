@@ -1,28 +1,20 @@
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
+import getRandomColor from '../utils/getRandomColor'
 
 type CardProps = {
     id: number;
     title: string;
-    description: string;
 }
 
-export default function Card({ id, title, description }: CardProps): JSX.Element {
+export default function Card({ id, title }: CardProps): JSX.Element {
     return (
         <Link href={`/info/${id}`}>
-            <div className="bg-white m-4 rounded-lg shadow-sm cursor-pointer hover:shadow-xl duration-200 overflow-hidden" style={{ height: '300px', width: '300px' }}>
-                <div className="h-1/2 overflow-hidden w-full object-cover">
-                    <Image
-                        src="/food.jpg"
-                        alt="Issa food"
-                        height={500}
-                        width={500}
-                    />
+            <div className="bg-white m-4 rounded-lg shadow-sm cursor-pointer hover:shadow-xl duration-200 overflow-hidden border-gray-700" style={{ height: '300px', width: '300px' }}>
+                <div className="h-1/2 overflow-hidden w-full object-cover" style={{ backgroundColor: getRandomColor() }}>
                 </div>
                 <div className="p-6">
-                    <h3 className="font-semibold text-2xl mb-4">{title}</h3>
-                    <p>{description}</p>
+                    <h3 className="font-semibold text-2xl mb-4 text-gray-600">{title}</h3>
                 </div>
             </div>
         </Link>

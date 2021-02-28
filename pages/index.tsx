@@ -1,33 +1,33 @@
 import Card from '../components/Card';
-import { InferGetServerSidePropsType } from 'next'
-import { DiseasesAPIResponse } from './api/diseases';
 import nutridigmServerInstance from '../config/api/nutridigmServerInstance';
+import { InferGetServerSidePropsType } from 'next';
 
-export const getServerSideProps = async () => {
-  const res = await fetch('http://localhost:3000/api/diseases')
-  const apiResponse: DiseasesAPIResponse = await res.json()
+type DiseasesType = {
+  problemID: number;
+  hcText: string;
+}[];
 
+export async function getServerSideProps() {
+  const res = await nutridigmServerInstance.get('healthconditions');
   return {
     props: {
-      diseases: apiResponse.data,
+      diseasesData: res.data as DiseasesType,
     },
   }
 }
 
-export default function Home({ diseases }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
-  nutridigmServerInstance.get('goodfor?itemID=275&problemId=13').then(res => console.log(res));
+export default function Home({ diseasesData }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   return (
-    <div className="h-screen w-screen bg-gray-300 p-6">
+    <div className="h-screen w-screen bg-gray-300 p-6 overflow-auto">
       {/* Header */}
       <h1 className="text-5xl p-6 font-bold text-gray-900">Plan My Plate</h1>
       {/* Cards container */}
-      <div className="flex">
-        {diseases && diseases.map(disease => (
+      <div className="flex flex-wrap">
+        {diseasesData && diseasesData.map(disease => (
           <Card
-            id={disease.id}
-            title={disease.name}
-            description={disease.description}
-            key={disease.id}
+            id={disease.problemID}
+            key={disease.problemID}
+            title={disease.hcText}
           />
         ))}
       </div>
