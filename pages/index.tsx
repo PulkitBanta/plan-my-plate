@@ -21,7 +21,7 @@ export async function getServerSideProps() {
 export default function Home({ diseasesData }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   const [inputVal, setInputVal] = useState('');
   return (
-    <div className="h-screen w-screen bg-gray-300 p-6 overflow-auto">
+    <>
       {/* Header */}
       <h1 className="text-5xl p-6 font-bold text-gray-800">Plan My Plate</h1>
       <Search input={inputVal} setInput={setInputVal} />
@@ -35,6 +35,6 @@ export default function Home({ diseasesData }: InferGetServerSidePropsType<typeo
           />
         ))}
       </div>
-    </div>
+    </>
   )
 }
