@@ -23,9 +23,12 @@ export default function InputRounded({
         type={type}
         name='search'
         placeholder={placeholder}
-        className='bg-white h-16 px-5 pr-10 w-full rounded-full text-xl focus:outline-none'
+        className='bg-white h-16 px-5 pr-10 w-full rounded-full text-xl focus:outline-none focus:ring focus:border-blue-300'
       />
-      <button type='submit' className='absolute right-0 top-0 mt-6 mr-4'>
+      <button
+        type='submit'
+        className='absolute right-0 top-0 mt-5 mr-4 text-2xl outline-none'
+      >
         {icon}
       </button>
     </div>
