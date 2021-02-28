@@ -2,45 +2,55 @@
 
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default function helloAPI(req: NextApiRequest, res: NextApiResponse) {
+interface APIResponse {
+  status: number;
+}
+
+interface DiseasesAPIResponse extends APIResponse {
+  data: {
+    name: string;
+    description: string;
+    proteins: string;
+    nutrients: string;
+  }[];
+}
+
+export default function diseasesAPI(
+  req: NextApiRequest,
+  res: NextApiResponse<DiseasesAPIResponse>
+) {
   res.status(200).json({
+    status: 200,
     data: [
       {
-        title: "Plan My Plate",
-        description:
-          "Laborum et aute cillum mollit. Magna quis quis incididunt deserunt. Do occaecat et tempor nulla consectetur officia mollit Lorem exercitation.",
-        diseases: [
-          {
-            name: "Covid-19",
-            description: "Mollit officia culpa officia mollit dolor cillum.",
-            protein: "59",
-            nutrients: "46",
-          },
-          {
-            name: "Disease 2",
-            description: "Mollit officia culpa officia mollit dolor cillum.",
-            protein: "85",
-            nutrients: "35",
-          },
-          {
-            name: "Disease 3",
-            description: "Mollit officia culpa officia mollit dolor cillum.",
-            protein: "65",
-            nutrients: "21",
-          },
-          {
-            name: "Disease 4",
-            description: "Mollit officia culpa officia mollit dolor cillum.",
-            protein: "70",
-            nutrients: "64",
-          },
-          {
-            name: "Disease 5",
-            description: "Mollit officia culpa officia mollit dolor cillum.",
-            protein: "35",
-            nutrients: "41",
-          },
-        ],
+        name: "Covid-19",
+        description: "Mollit officia culpa officia mollit dolor cillum.",
+        proteins: "59",
+        nutrients: "46",
+      },
+      {
+        name: "Disease 2",
+        description: "Mollit officia culpa officia mollit dolor cillum.",
+        proteins: "85",
+        nutrients: "35",
+      },
+      {
+        name: "Disease 3",
+        description: "Mollit officia culpa officia mollit dolor cillum.",
+        proteins: "65",
+        nutrients: "21",
+      },
+      {
+        name: "Disease 4",
+        description: "Mollit officia culpa officia mollit dolor cillum.",
+        proteins: "70",
+        nutrients: "64",
+      },
+      {
+        name: "Disease 5",
+        description: "Mollit officia culpa officia mollit dolor cillum.",
+        proteins: "35",
+        nutrients: "41",
       },
     ],
   });

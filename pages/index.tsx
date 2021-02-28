@@ -1,10 +1,23 @@
 import Card from '../components/Card';
+import { InferGetServerSidePropsType } from 'next'
 
-export default function Home(): JSX.Element {
+type Data = any;
+
+export const getServerSideProps = async () => {
+  const res = await fetch('http://localhost:3000/api/diseases')
+  const data: Data = await res.json()
+
+  return {
+    props: {
+      data,
+    },
+  }
+}
+
+
+export default function Home({ data }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   const arr = ['hello', 'bro', 'whats', 'up'];
-  fetch('http://localhost:3000/api/hello')
-    .then(response => response.json())
-    .then(data => console.log(data));
+  console.log(data);
   return (
     <div className="h-screen w-screen bg-gray-300 p-6">
       {/* Header */}
