@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import ListCard from "../../components/ListCard";
 import { FcCheckmark, FcApproval, FcHighPriority } from "react-icons/fc";
 import { HiOutlineX } from "react-icons/hi";
+import CardSkeleton from "../../components/CardSkeleton";
+import getArrayFromRange from "../../utils/getArrayFromRange";
 
 export default function DiseaseInfo() {
     const route = useRouter();
@@ -38,8 +40,8 @@ export default function DiseaseInfo() {
                 <h3 className="flex flex-row items-center text-4xl font-light my-6 text-gray-700">
                     Food items that will make your body happy&nbsp;<FcApproval />
                 </h3>
-                <div className='flex flex-row flex-wrap justify-center'>
-                    {avoidItems &&
+                <div className='flex flex-row flex-wrap justify-center w-screen'>
+                    {avoidItems ?
                         avoidItems
                             .split("; ")
                             .map((item) => (
@@ -48,7 +50,13 @@ export default function DiseaseInfo() {
                                     icon={<FcCheckmark />}
                                     iconClasses='bg-gray-800'
                                 />
-                            ))}
+                            )) : (
+                            <>
+                                {getArrayFromRange(6).map(i => (
+                                    <CardSkeleton key={i} />
+                                ))}
+                            </>
+                        )}
                 </div>
 
                 <hr className="my-6 w-full border-2 border-gray-200" />
@@ -56,8 +64,8 @@ export default function DiseaseInfo() {
                 <h3 className="flex flex-row items-center text-4xl font-light my-6 text-gray-700">
                     Food items that will make you regret&nbsp;<FcHighPriority />
                 </h3>
-                <div className="flex flex-row flex-wrap justify-center">
-                    {consumeItems &&
+                <div className="flex flex-row flex-wrap justify-center w-screen">
+                    {consumeItems ?
                         consumeItems
                             .split("; ")
                             .map((item) => (
@@ -66,7 +74,14 @@ export default function DiseaseInfo() {
                                     icon={<HiOutlineX />}
                                     iconClasses='bg-gray-800'
                                 />
-                            ))}
+                            )) : (
+                            <>
+                                {getArrayFromRange(6).map(i => (
+                                    <CardSkeleton key={i} />
+                                ))}
+                            </>
+                        )
+                    }
                 </div>
             </div>
         </div>
