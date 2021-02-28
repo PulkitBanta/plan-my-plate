@@ -24,9 +24,9 @@ export default function Home({
 }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   const [inputVal, setInputVal] = useState("");
   return (
-    <>
+    <div className='flex flex-col items-center'>
       {/* Header */}
-      <h1 className='text-5xl p-6 font-bold text-gray-800'>Plan My Plate</h1>
+      <h3 className='text-7xl tracking-wide font-bold my-2 text-gray-700'>Plan My Plate</h3>
       <InputRounded
         input={inputVal}
         setInput={setInputVal}
@@ -35,7 +35,7 @@ export default function Home({
         type='search'
       />
       {/* Cards container */}
-      <div className='flex flex-wrap'>
+      <div className='flex flex-wrap items-center justify-center'>
         {diseasesData &&
           diseasesData
             .filter((disease) =>
@@ -49,6 +49,6 @@ export default function Home({
               />
             ))}
       </div>
-    </>
+    </div>
   );
 }
