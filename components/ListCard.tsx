@@ -8,7 +8,7 @@ type ListCardProps = {
 
 export default function ListCard({ title, icon, iconClasses }: ListCardProps) {
   return (
-    <div className='flex flex-col-reverse md:flex-row md:w-1/4 justify-between items-center bg-white p-6 cursor-pointer m-2 md:m-4 shadow-md hover:shadow-xl duration-300 rounded-lg'>
+    <div className='flex flex-col-reverse md:flex-row md:w-1/4 justify-between items-center bg-white p-6 m-2 md:m-4 shadow-md duration-300 rounded-lg'>
       <div className='flex w-full md:w-1/4 px-12 md:px-0 items-center'>
         <div
           className={`flex justify-center text-xl md:text-2xl text-white p-4 rounded-full shadow-md ${iconClasses}`}
