@@ -1,6 +1,7 @@
 import Card from '../components/Card';
 import { InferGetServerSidePropsType } from 'next'
 import { DiseasesAPIResponse } from './api/diseases';
+import nutridigmServerInstance from '../config/api/nutridigmServerInstance';
 
 export const getServerSideProps = async () => {
   const res = await fetch('http://localhost:3000/api/diseases')
@@ -14,6 +15,7 @@ export const getServerSideProps = async () => {
 }
 
 export default function Home({ diseases }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+  nutridigmServerInstance.get('goodfor?itemID=275&problemId=13').then(res => console.log(res));
   return (
     <div className="h-screen w-screen bg-gray-300 p-6">
       {/* Header */}
