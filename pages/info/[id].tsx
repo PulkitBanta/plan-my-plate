@@ -1,28 +1,34 @@
-import React from 'react'
-import { InferGetStaticPropsType } from 'next'
+import React, { useState } from "react";
+import nutridigmServerInstance from "../../config/api/nutridigmServerInstance";
+import { useRouter } from "next/router";
 
-
-// type DiseaseInfoStaticPropsType = {
-//     params: {
-//         id: number;
-//     }
-// }
-
-// export async function getStaticProps({ params }: DiseaseInfoStaticPropsType) {
-//     // const postData = getPostData(params.id)
-//     const id = params.id;
-//     return {
-//         props: {
-//             id
-//         }
-//     }
-// }
-
-// export default function DiseaseInfo({ id }: InferGetStaticPropsType<typeof getStaticProps>) {
 export default function DiseaseInfo() {
-    return (
-        <div>
-            chekc
-        </div>
-    )
+	const [avoidItems, setAvoidItems] = useState<string>("");
+	const [consumeItems, setConsumeItems] = useState<string>("");
+
+	async function fetchItems(id: any) {
+		setConsumeItems(
+			await nutridigmServerInstance.get(
+				`topitemstoconsume?&problemId=${id}`
+			)
+		);
+		setAvoidItems(
+			await nutridigmServerInstance.get(
+				`topitemstoavoid?&problemId=${id}`
+			)
+		);
+	}
+
+	const route = useRouter();
+	const { id, title } = route.query;
+	console.log(title);
+	fetchItems(id);
+
+	return (
+		<div>
+			<h3>{title}</h3>
+			<p>Items you can consume: {avoidItems}</p>
+			<p>Items you should avoid: {consumeItems}</p>
+		</div>
+	);
 }

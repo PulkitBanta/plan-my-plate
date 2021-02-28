@@ -9,8 +9,8 @@ type CardProps = {
 
 export default function Card({ id, title }: CardProps): JSX.Element {
     return (
-        <Link href={`/info/${id}`}>
-            <div className="bg-white m-4 rounded-lg shadow-sm cursor-pointer hover:shadow-xl duration-200 overflow-hidden border-gray-700" style={{ height: '300px', width: '300px' }}>
+        <Link href={{ pathname: `/info/${id}`, query: { title: `${title}` }}}>
+            <div className="bg-white m-4 rounded-lg shadow-sm cursor-pointer hover:shadow-xl duration-200 overflow-hidden border-gray-700" style={{ height: '250px', width: '250px' }}>
                 <div className="h-1/2 overflow-hidden w-full object-cover" style={{ backgroundColor: getRandomColor() }}>
                 </div>
                 <div className="p-6">
